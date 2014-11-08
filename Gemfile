@@ -29,6 +29,9 @@ gem 'haml'
 gem 'twilio-ruby'
 gem 'unicorn'
 
+# you need JSON for the backend parsing
+gem 'json'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

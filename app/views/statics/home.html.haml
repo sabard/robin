@@ -1,1 +1,14 @@
-Welcome to Robin
+.alert.alert-info.alert-center{:role => "alert"}
+  Pebble detected crash
+.container
+  .central
+    %h1.logo Robin
+    .status Speak when ready  
+    #rec
+      = image_tag("mic.svg", :class => "mic") 
+
+
+
+
+%input#input{:type => "text", :style => "display:none"}
+%textarea#response{:cols => "40", :rows => "20", :style => "display:none"}

@@ -1,8 +1,8 @@
 class Notifier < ActionMailer::Base
-  default from: "sabar@chesscademy.com"
+  default from: "alert@robin.com"
 
   def trigger_response(email)
-    mail(to: email, 
+    mail(to: email,
       subject: 'ALERT')
   end
 end

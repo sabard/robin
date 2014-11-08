@@ -1,0 +1,65 @@
+body{
+  background:url("light_wool.png");
+  border-top:5px solid rgba(92, 151, 191, 0.6);
+}
+
+.alert-center{
+  border-radius:0px!important;
+  text-align: center;
+  font-weight:bold;
+  background: rgba(92, 151, 191, 0.3);
+  display: none;
+}
+
+.logo{
+  font-size:48px;
+  color:#bdc3c7;
+  cursor:default;
+  margin-bottom:100px;
+}
+
+.status{
+  font-size:30px;
+  color:rgba(92, 151, 191, 0.6);
+  margin-bottom:40px;
+}
+
+.mic{
+  width:200px;
+  margin:0px auto;
+  text-align:center;
+  cursor: pointer;
+   -webkit-animation-duration: 1s;
+  -webkit-animation-iteration-count: infinite;
+}
+
+.jumbotron{
+  background:#fff;
+}
+
+.central{
+  margin:0px auto;
+  text-align:center;
+}
+
+.label-seamless{
+  background:rgba(92, 151, 191, 0.6);
+}
+
+
+.less{
+  margin-left:-10px;
+  color:rgba(92, 151, 191, 0.6);
+}
+
+
+.null-padder{
+  padding-left:0px!important;
+  padding-right:0px!important;
+  padding-top:0px!important;
+  padding-bottom:0px!important;
+}
+
+.padder{
+  padding:45px;
+} 
