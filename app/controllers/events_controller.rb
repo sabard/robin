@@ -14,14 +14,14 @@ class EventsController < ApplicationController
       twilio_client = Twilio::REST::Client.new sid, secret
       twilio_client.account.sms.messages.create(
         from: "#{num}",
-        to: "+17329304455",
+        to: "+17327663590",
         body: "An accident has occurred!"
       )
 
-      Notifier.trigger_response("sabar.dasgupta@gmail.com").deliver
+      Notifier.trigger_response("ajng21@gmail.com").deliver
     end
 
-    render nothing: true
+    render json: [@type]
   end
 
   def test_post
