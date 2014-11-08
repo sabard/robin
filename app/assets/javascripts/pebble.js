@@ -65,3 +65,61 @@
 // }
 
 // getAccel(1000, 0, 0, 0);
+
+///////////////////////////////////////////////////////
+
+// var data = [[48,2358517179],[-12,2358517879],[6,2358518423],[-310,2358518971],[0,2358519527],[2,2358520096],[-13,2358520676],[10,2358521265],[310,2358521861],[20,2358522979]];
+// var THRESHOLD = 100;
+
+// function detectCrash(array){
+//   var timeArray = utcToTime(array);
+//   var time_mapped = timeArray.map(function(value){return value[1]});
+//   var mapped = array.map(function(value){return value[0]});
+//   var abs_mapped = array.map(function(value){return Math.abs(value[0])});
+//   var stdv = standardDeviation(abs_mapped);
+//   if (stdv < THRESHOLD){
+//     return false;
+//   }
+//   else {
+//     var max = Math.max.apply(Math, mapped);
+//     var min = Math.min.apply(Math, mapped);
+//     if (max / (max + min) > 0.9 && Math.abs(mapped.indexOf(max) - mapped.indexOf(min)) <= 2){
+//       return true;
+//     }
+//     return false;
+//   }
+// }
+
+// function utcToTime(array){
+//   return array.map(function(value){
+//     var d = new Date();
+//     d.setUTCMilliseconds(value[1]);
+//     return [value[0], d];
+//   });
+// }
+
+// function standardDeviation(values){
+//   var avg = average(values);
+  
+//   var squareDiffs = values.map(function(value){
+//     var diff = value - avg;
+//     var sqrDiff = diff * diff;
+//     return sqrDiff;
+//   });
+  
+//   var avgSquareDiff = average(squareDiffs);
+ 
+//   var stdDev = Math.sqrt(avgSquareDiff);
+//   return stdDev;
+// }
+ 
+// function average(data){
+//   var sum = data.reduce(function(sum, value){
+//     return sum + value;
+//   }, 0);
+ 
+//   var avg = sum / data.length;
+//   return avg;
+// }
+
+// detectCrash(data);
