@@ -29,7 +29,7 @@ function showAlert(text){
   $(".alert-center").fadeIn();
   setTimeout(function(){
     $(".alert-center").fadeOut();
-  }, 5000);
+  }, 20000);
 }
 
 $(document).ready(function() {

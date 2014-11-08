@@ -41,35 +41,6 @@ class EventsController < ApplicationController
       crashed = true
 
       if crashed
-        # Pusher
-        Pusher['events'].trigger('accident', {
-          message: 'There has been an accident'
-        })
-
-        # get user info
-        params =  {
-          developerkey: secret,
-          responseformat: 'json',
-          userid: 'ITCUS_USERID_092'
-        }
-        x = Net::HTTP.post_form(URI.parse('https://api-jp-t-itc.com/GetUserInfo'), params)
-        @user_info = x.body
-
-        @user_info = JSON.parse(@user_info)
-        sex = @user_info["vehicleinfo"][0]["sex"]
-        age = @user_info["vehicleinfo"][0]["age"]
-        vehiclemodel = @user_info["vehicleinfo"][0]["vehiclemodel"]
-
-        # get vehicle specifications
-        params = {
-          developerkey: secret,
-          responseformat: 'json',
-          vehiclemodel: vehiclemodel
-        }
-
-        x = Net::HTTP.post_form(URI.parse('https://api-jp-t-itc.com/GetVehicleSpec'), params)
-        @vehicle_model_info = x.body
-
         # get vehicle position
         params = {
           developerkey: secret,
@@ -86,6 +57,37 @@ class EventsController < ApplicationController
         lat = @other_info["vehicleinfo"][0]["data"][0]["Posn"]["lat"]
         lon = @other_info["vehicleinfo"][0]["data"][0]["Posn"]["lon"]
 
+        # get user info
+        params =  {
+          developerkey: secret,
+          responseformat: 'json',
+          userid: 'ITCJP_USERID_038'
+        }
+        x = Net::HTTP.post_form(URI.parse('https://api-jp-t-itc.com/GetUserInfo'), params)
+        @user_info = x.body
+
+        @user_info = JSON.parse(@user_info)
+        sex = @user_info["vehicleinfo"][0]["sex"]
+        age = @user_info["vehicleinfo"][0]["age"]
+        usn = @user_info["vehicleinfo"][0]["username"]
+        vehiclemodel = @user_info["vehicleinfo"][0]["vehiclemodel"]
+
+        # Pusher
+        Pusher['events'].trigger('accident', {
+          message: "You have been in an accident, #{usn}! Your location is #{lat} #{lon}. Authorities are on the way and your contacts have been notified"
+        })
+
+        # get vehicle specifications
+        params = {
+          developerkey: secret,
+          responseformat: 'json',
+          vehiclemodel: vehiclemodel
+        }
+
+        x = Net::HTTP.post_form(URI.parse('https://api-jp-t-itc.com/GetVehicleSpec'), params)
+        @vehicle_model_info = x.body
+
+=begin
         twilio_client.account.sms.messages.create(
           from: "#{num}",
           to: "+17327663590",
@@ -93,7 +95,7 @@ class EventsController < ApplicationController
           )
 
         Notifier.trigger_response("ajng21@gmail.com").deliver
-
+=end
       end
     end
 
