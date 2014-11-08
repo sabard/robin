@@ -1,10 +1,27 @@
 var accessToken = "4c11bbd86fd64f2a86045a02197b657e";
 var subscriptionKey = "b55a40bb-dcd0-4e77-9979-8030f7815911";
 var baseUrl = "https://api.api.ai/v1/";
+var lat, lng;
 
 function speak(message){
   var msg = new SpeechSynthesisUtterance(message);
   window.speechSynthesis.speak(msg);
+}
+
+
+$(document).ready(function(){
+  navigator.geolocation.getCurrentPosition(GetLocation);
+});
+
+function GetLocation(location) {
+  lat = location.coords.latitude;
+  lng = location.coords.longitude;
+  // $.ajax({
+  //   url: "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670522,151.1957362&radius=500&types=food&name=cruise&key=AIzaSyDFdR6RCsLyq0eVJaX1RuKpnLb7k7RH0QQ",
+    
+
+  // })
+  
 }
 
 function showAlert(text){

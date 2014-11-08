@@ -3,11 +3,13 @@
 // var Vector2 = require('vector2');
 // var ajax = require('ajax');
 
-// function sendAjax() {
+// function sendAjax(result) {
 //   ajax(
 //     {
 //       url: 'http://5d1dfef5.ngrok.com/trigger_event/accident',
-//       type: 'json'
+//       type: 'json',
+//          contentType: 'application/json',
+ //         data:  JSON.stringify(result)
 //     },
 //     function(data) {
 //       console.log('data ' + data);
@@ -48,7 +50,7 @@
 //       pastAccel[9][1] = currentTime;
 //     }
 
-//     console.log(pastAccel);
+//     detectCrash(pastAccel)
 
 //     var wind = new UI.Window();
 // //     wind.remove(previousTextLog);
@@ -84,6 +86,7 @@
 //     var max = Math.max.apply(Math, mapped);
 //     var min = Math.min.apply(Math, mapped);
 //     if (max / (max + min) > 0.9 && Math.abs(mapped.indexOf(max) - mapped.indexOf(min)) <= 2){
+//       sendAjax(time_mapped[time_mapped.length-1]);
 //       return true;
 //     }
 //     return false;
@@ -121,5 +124,3 @@
 //   var avg = sum / data.length;
 //   return avg;
 // }
-
-// detectCrash(data);
