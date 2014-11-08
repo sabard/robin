@@ -8,9 +8,15 @@ class EventsController < ApplicationController
 
     case @type
     when 'accident'
-      sid = YAML.load_file('config/secrets.yml')['twilio']['sid']
-      secret = YAML.load_file('config/secrets.yml')['twilio']['token']
-      num = YAML.load_file('config/secrets.yml')['twilio']['number']
+      if Rails.env.production?
+        sid = ENV['TWILIO_SID']
+        secret = ENV['TWILIO_SECRET']
+        num = ENV['TWILIO_NUM']
+      else
+        sid = YAML.load_file('config/secrets.yml')['twilio']['sid']
+        secret = YAML.load_file('config/secrets.yml')['twilio']['token']
+        num = YAML.load_file('config/secrets.yml')['twilio']['number']
+      end
       twilio_client = Twilio::REST::Client.new sid, secret
       twilio_client.account.sms.messages.create(
         from: "#{num}",
@@ -25,7 +31,12 @@ class EventsController < ApplicationController
   end
 
   def test_post
-    secret = YAML.load_file('config/secrets.yml')['toyota']['secret']
+    if Rails.env.production?
+      secret = ENV['SECRET']
+    else
+      secret = YAML.load_file('config/secrets.yml')['toyota']['secret']
+    end
+    
 
     params =  {
       developerkey: secret,

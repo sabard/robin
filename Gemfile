@@ -27,6 +27,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring',        group: :development
 gem 'haml'
 gem 'twilio-ruby'
+gem 'unicorn'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
