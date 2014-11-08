@@ -28,6 +28,9 @@ gem 'spring',        group: :development
 gem 'haml'
 gem 'twilio-ruby'
 
+# you need JSON for the backend parsing
+gem 'json'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
