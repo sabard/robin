@@ -13,6 +13,7 @@
 %input#input{:type => "text", :style => "display:none"}
 %textarea#response{:cols => "40", :rows => "20", :style => "display:none"}
 
+%script{:src => "//js.pusher.com/2.2/pusher.min.js", :type => "text/javascript"}
 = javascript_tag do 
   pusher_key = "#{j @pusher_key }";
 = javascript_include_tag('home')

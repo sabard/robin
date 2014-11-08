@@ -27,7 +27,17 @@ class EventsController < ApplicationController
 
       crashed = false
       
-      # determine if crashed happened
+      # determine if crashed happened based on api call
+=begin
+      params = {
+        developerkey: secret,
+        responseformat: 'json',
+        userid: 'ITCJP_USERID_038',
+        infoids: '[Spd]'
+      }
+      x = Net::HTTP.post_form(URI.parse('https://api-jp-t-itc.com/GetVehicleInfo'), params)
+      @possible_crash = x.body
+=end
       crashed = true
 
       if crashed
