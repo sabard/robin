@@ -39,7 +39,7 @@ class EventsController < ApplicationController
       developerkey: secret,
       responseformat: 'json',
       userid: 'ITCJP_USERID_038',
-      infoids: '[Spd]'
+      infoids: '[VehSt10]'
     }
 
     x = Net::HTTP.post_form(URI.parse('https://api-jp-t-itc.com/GetVehicleInfo'), params)
