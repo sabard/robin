@@ -125,6 +125,7 @@ DEPENDENCIES
   haml
   jbuilder (~> 2.0)
   jquery-rails
+  json
   pg
   rails (= 4.1.6)
   sass-rails (~> 4.0.3)
