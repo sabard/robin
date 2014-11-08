@@ -18,13 +18,13 @@ class EventsController < ApplicationController
         secret = ENV['TWILIO_SECRET']
         num = ENV['TWILIO_NUM']
       else
-        sid = YAML.load_file('config/secrets.yml')['twilio']['sid']
-        secret = YAML.load_file('config/secrets.yml')['twilio']['token']
-        num = YAML.load_file('config/secrets.yml')['twilio']['number']
+        sid = YAML.load_file('config/super_secrets.yml')['twilio']['sid']
+        secret = YAML.load_file('config/super_secrets.yml')['twilio']['token']
+        num = YAML.load_file('config/super_secrets.yml')['twilio']['number']
       end
       twilio_client = Twilio::REST::Client.new sid, secret
 
-      secret = YAML.load_file('config/secrets.yml')['toyota']['secret']
+      secret = YAML.load_file('config/super_secrets.yml')['toyota']['secret']
 
       params =  {
         developerkey: secret,
@@ -79,7 +79,7 @@ class EventsController < ApplicationController
     if Rails.env.production?
       secret = ENV['SECRET']
     else
-      secret = YAML.load_file('config/secrets.yml')['toyota']['secret']
+      secret = YAML.load_file('config/super_secrets.yml')['toyota']['secret']
     end
     
 
