@@ -65,7 +65,18 @@ function switchRecognition() {
 function setInput(text) {
   $("#input").val(text);
   if (text.search("help") != -1){
-    speak("Plea for help recognized. Contacting local authorities for help.");
+    speak("Plea for help recognized. Contacting local authorities and a friend for help.");
+    $.ajax({
+      url: 'trigger_event/accident',
+      type:   'GET',
+      success: function (html) {
+        setTimeout(function(){
+          speak("Your friend and authorities have been contacted.");
+        }, 500);
+      },
+      error: function (response) {
+      }
+    });
   }
   else if (text.search("hospital") != -1 && (text.search("where") != -1 || text.search("location") != -1 || text.search("find") != -1)){
     speak("Searching for the nearest hospital");
