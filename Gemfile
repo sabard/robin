@@ -31,6 +31,7 @@ gem 'unicorn'
 
 # you need JSON for the backend parsing
 gem 'json'
+gem 'pusher'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
