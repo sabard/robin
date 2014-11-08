@@ -3,6 +3,14 @@ body{
   border-top:5px solid rgba(92, 151, 191, 0.6);
 }
 
+.alert-center{
+  border-radius:0px!important;
+  text-align: center;
+  font-weight:bold;
+  background: rgba(92, 151, 191, 0.3);
+  display: none;
+}
+
 .logo{
   font-size:48px;
   color:#bdc3c7;

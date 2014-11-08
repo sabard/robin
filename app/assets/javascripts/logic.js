@@ -67,6 +67,9 @@ function setInput(text) {
   if (text.search("help") != -1){
     speak("Plea for help recognized. Contacting local authorities for help.");
   }
+  else if (text.search("hospital") != -1 && (text.search("where") != -1 || text.search("location") != -1 || text.search("find") != -1)){
+    speak("Searching for the nearest hospital");
+  }
   else{
     speak("I'm not sure how to process your request");
   }
@@ -92,6 +95,7 @@ function send() {
 
     success: function(data) {
       setResponse(JSON.stringify(data, undefined, 2));
+      console.log(JSON.stringify(data, undefined, 2));
     },
     error: function() {
       setResponse("Internal Server Error");
