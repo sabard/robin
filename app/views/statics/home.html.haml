@@ -12,3 +12,7 @@
 
 %input#input{:type => "text", :style => "display:none"}
 %textarea#response{:cols => "40", :rows => "20", :style => "display:none"}
+
+= javascript_tag do 
+  pusher_key = "#{j @pusher_key }";
+= javascript_include_tag('home')
