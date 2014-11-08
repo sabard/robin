@@ -7,6 +7,14 @@ function speak(message){
   window.speechSynthesis.speak(msg);
 }
 
+function showAlert(text){
+  $(".alert-center").text(text);
+  $(".alert-center").fadeIn();
+  setTimeout(function(){
+    $(".alert-center").fadeOut();
+  }, 5000);
+}
+
 $(document).ready(function() {
   $(".mic").addClass('animated pulse');
   $("#input").keypress(function(event) {
@@ -66,12 +74,14 @@ function setInput(text) {
   $("#input").val(text);
   if (text.search("help") != -1){
     speak("Plea for help recognized. Contacting local authorities and a friend for help.");
+    showAlert("Plea for help recognized. Contacting local authorities and a friend for help.");
     $.ajax({
       url: 'trigger_event/accident',
       type:   'GET',
       success: function (html) {
         setTimeout(function(){
           speak("Your friend and authorities have been contacted.");
+          showAlert("Your friend and authorities have been contacted..");
         }, 500);
       },
       error: function (response) {
@@ -80,6 +90,7 @@ function setInput(text) {
   }
   else if (text.search("hospital") != -1 && (text.search("where") != -1 || text.search("location") != -1 || text.search("find") != -1)){
     speak("Searching for the nearest hospital");
+    showAlert("Searching for the nearest hospital");
   }
   else{
     speak("I'm not sure how to process your request");
