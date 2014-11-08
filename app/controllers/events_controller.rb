@@ -23,53 +23,68 @@ class EventsController < ApplicationController
         num = YAML.load_file('config/super_secrets.yml')['twilio']['number']
       end
       twilio_client = Twilio::REST::Client.new sid, secret
-
       secret = YAML.load_file('config/super_secrets.yml')['toyota']['secret']
 
-      params =  {
-        developerkey: secret,
-        responseformat: 'json',
-        userid: 'ITCUS_USERID_092'
-      }
-      x = Net::HTTP.post_form(URI.parse('https://api-jp-t-itc.com/GetUserInfo'), params)
-      @user_info = x.body
+      crashed = false
+      
+      # determine if crashed happened
+      crashed = true
 
-      @user_info = JSON.parse(@user_info)
-      sex = @user_info["vehicleinfo"][0]["sex"]
-      age = @user_info["vehicleinfo"][0]["age"]
-      vehiclemodel = @user_info["vehicleinfo"][0]["vehiclemodel"]
+      if crashed
+        # Pusher
+        Pusher['events'].trigger('accident', {
+          message: 'There has been an accident'
+        })
 
-      params = {
-        developerkey: secret,
-        responseformat: 'json',
-        vehiclemodel: vehiclemodel
-      }
+        # get user info
+        params =  {
+          developerkey: secret,
+          responseformat: 'json',
+          userid: 'ITCUS_USERID_092'
+        }
+        x = Net::HTTP.post_form(URI.parse('https://api-jp-t-itc.com/GetUserInfo'), params)
+        @user_info = x.body
 
-      x = Net::HTTP.post_form(URI.parse('https://api-jp-t-itc.com/GetVehicleSpec'), params)
-      @vehicle_model_info = x.body
+        @user_info = JSON.parse(@user_info)
+        sex = @user_info["vehicleinfo"][0]["sex"]
+        age = @user_info["vehicleinfo"][0]["age"]
+        vehiclemodel = @user_info["vehicleinfo"][0]["vehiclemodel"]
 
-      params = {
-        developerkey: secret,
-        responseformat: 'json',
-        userid: 'ITCJP_USERID_038',
-        infoids: '[Posn]'
-      }
+        # get vehicle specifications
+        params = {
+          developerkey: secret,
+          responseformat: 'json',
+          vehiclemodel: vehiclemodel
+        }
 
-      x = Net::HTTP.post_form(URI.parse('https://api-jp-t-itc.com/GetVehicleInfo'), params)
-      @other_info = x.body
+        x = Net::HTTP.post_form(URI.parse('https://api-jp-t-itc.com/GetVehicleSpec'), params)
+        @vehicle_model_info = x.body
 
-      @other_info = JSON.parse(@other_info)
+        # get vehicle position
+        params = {
+          developerkey: secret,
+          responseformat: 'json',
+          userid: 'ITCJP_USERID_038',
+          infoids: '[Posn]'
+        }
 
-      lat = @other_info["vehicleinfo"][0]["data"][0]["Posn"]["lat"]
-      lon = @other_info["vehicleinfo"][0]["data"][0]["Posn"]["lon"]
+        x = Net::HTTP.post_form(URI.parse('https://api-jp-t-itc.com/GetVehicleInfo'), params)
+        @other_info = x.body
 
-      twilio_client.account.sms.messages.create(
-        from: "#{num}",
-        to: "+17327663590",
-        body: "An accident has occurred at " + lat.to_s + ", " + lon.to_s + ". The driver is " + sex.to_s + ", age " + age.to_s + ", driving a " + vehiclemodel.to_s
-        )
+        @other_info = JSON.parse(@other_info)
 
-      Notifier.trigger_response("ajng21@gmail.com").deliver
+        lat = @other_info["vehicleinfo"][0]["data"][0]["Posn"]["lat"]
+        lon = @other_info["vehicleinfo"][0]["data"][0]["Posn"]["lon"]
+
+        twilio_client.account.sms.messages.create(
+          from: "#{num}",
+          to: "+17327663590",
+          body: "An accident has occurred at " + lat.to_s + ", " + lon.to_s + ". The driver is " + sex.to_s + ", age " + age.to_s + ", driving a " + vehiclemodel.to_s
+          )
+
+        Notifier.trigger_response("ajng21@gmail.com").deliver
+
+      end
     end
 
     render nothing: true
