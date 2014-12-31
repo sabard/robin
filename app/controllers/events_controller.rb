@@ -28,16 +28,23 @@ class EventsController < ApplicationController
       crashed = false
       
       # determine if crashed happened based on api call
-=begin
+      #start_time = DateTime.parse(params[:timestamp]) - 30.seconds
+      #end_time = DateTime.parse(params[:timestamp]) - 30.seconds
+      start_time = "2014-11-08 15:00:00"
+      end_time = "2014-11-08 15:01:00"
+
       params = {
         developerkey: secret,
         responseformat: 'json',
         userid: 'ITCJP_USERID_038',
+        searchstart: start_time,
+        searchend: end_time,
         infoids: '[Spd]'
       }
       x = Net::HTTP.post_form(URI.parse('https://api-jp-t-itc.com/GetVehicleInfo'), params)
       @possible_crash = x.body
-=end
+      raise @possible_crash.to_yaml
+
       crashed = true
 
       if crashed

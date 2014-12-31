@@ -1,0 +1,74 @@
+/* line 1, /Users/Sabar/Dev/robin/app/assets/stylesheets/style.css.scss */
+body {
+  background: url("light_wool.png");
+  border-top: 5px solid rgba(92, 151, 191, 0.6);
+}
+
+/* line 6, /Users/Sabar/Dev/robin/app/assets/stylesheets/style.css.scss */
+.alert-center {
+  border-radius: 0px !important;
+  text-align: center;
+  font-weight: bold;
+  background: rgba(92, 151, 191, 0.3);
+  display: none;
+}
+
+/* line 14, /Users/Sabar/Dev/robin/app/assets/stylesheets/style.css.scss */
+.logo {
+  font-size: 48px;
+  color: #bdc3c7;
+  cursor: default;
+  margin-bottom: 100px;
+}
+
+/* line 21, /Users/Sabar/Dev/robin/app/assets/stylesheets/style.css.scss */
+.status {
+  font-size: 30px;
+  color: rgba(92, 151, 191, 0.6);
+  margin-bottom: 40px;
+}
+
+/* line 27, /Users/Sabar/Dev/robin/app/assets/stylesheets/style.css.scss */
+.mic {
+  width: 200px;
+  margin: 0px auto;
+  text-align: center;
+  cursor: pointer;
+  -webkit-animation-duration: 1s;
+  -webkit-animation-iteration-count: infinite;
+}
+
+/* line 36, /Users/Sabar/Dev/robin/app/assets/stylesheets/style.css.scss */
+.jumbotron {
+  background: #fff;
+}
+
+/* line 40, /Users/Sabar/Dev/robin/app/assets/stylesheets/style.css.scss */
+.central {
+  margin: 0px auto;
+  text-align: center;
+}
+
+/* line 45, /Users/Sabar/Dev/robin/app/assets/stylesheets/style.css.scss */
+.label-seamless {
+  background: rgba(92, 151, 191, 0.6);
+}
+
+/* line 50, /Users/Sabar/Dev/robin/app/assets/stylesheets/style.css.scss */
+.less {
+  margin-left: -10px;
+  color: rgba(92, 151, 191, 0.6);
+}
+
+/* line 56, /Users/Sabar/Dev/robin/app/assets/stylesheets/style.css.scss */
+.null-padder {
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+}
+
+/* line 63, /Users/Sabar/Dev/robin/app/assets/stylesheets/style.css.scss */
+.padder {
+  padding: 45px;
+}
